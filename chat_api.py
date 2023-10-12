@@ -1,5 +1,10 @@
 import openai
-openai.api_key = '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'
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+openai.api_key = os.getenv('PROJECT_API_KEY')
 
 messages = [ {"role": "system", "content": "You are a intelligent assistant."} ]
 
@@ -12,6 +17,7 @@ while True:
 		chat = openai.ChatCompletion.create( 
 			model="gpt-3.5-turbo", messages=messages 
 		) 
+
 	
 	reply = chat.choices[0].message.content 
 	print(f"ChatGPT: {reply}") 
